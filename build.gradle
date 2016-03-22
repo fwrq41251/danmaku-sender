@@ -32,7 +32,7 @@ dependencies {
 			'org.springframework:spring-webmvc:4.2.5.RELEASE',
 			'org.springframework.boot:spring-boot-starter-web:1.3.3.RELEASE',
 			'commons-lang:commons-lang:2.6',
-			'com.squareup.okhttp:okhttp:2.7.0',
+			'com.squareup.okhttp3:okhttp:3.2.0',
 			'com.fasterxml.jackson.core:jackson-databind:2.6.5',
 			'com.google.guava:guava:19.0'
 	testCompile('org.springframework.boot:spring-boot-starter-test') 
