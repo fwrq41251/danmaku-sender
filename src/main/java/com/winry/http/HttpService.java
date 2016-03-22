@@ -26,6 +26,7 @@ public class HttpService {
         RequestBody formBody = form.build();
         Request request = new Request.Builder()
                 .url(url)
+                .addHeader("Accept-Encoding", "gzip, deflate")
                 .post(formBody)
                 .build();
         return call(Clazz, request);

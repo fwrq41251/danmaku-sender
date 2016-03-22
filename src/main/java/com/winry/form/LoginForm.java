@@ -12,14 +12,12 @@ public class LoginForm implements Form {
 
     public String pwd;
 
-    public String captcha;
+    public String captcha = "";
 
-    public String keep;
+    public String keep = "1";
 
     @Override
     public RequestBody build() {
-        this.captcha = "";
-        this.keep = "1";
         return FormUtil.toFormBody(this);
     }
 
