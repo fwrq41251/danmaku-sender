@@ -14,7 +14,6 @@ import org.junit.Test;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.common.io.Files;
-import com.squareup.okhttp.HttpUrl;
 import com.squareup.okhttp.OkHttpClient;
 import com.squareup.okhttp.Request;
 import com.squareup.okhttp.Response;
@@ -27,9 +26,7 @@ public class BilibiliApiTest {
 	@Test
 	public void getPublicKey() throws IOException {
 		OkHttpClient client = new OkHttpClient();
-		HttpUrl url = new HttpUrl.Builder().scheme("https").host("passport.bilibili.com").addPathSegment("login")
-				.addQueryParameter("act", "getkey").build();
-		Request request = new Request.Builder().url(url).build();
+		Request request = new Request.Builder().url("https://passport.bilibili.com/login?act=getkey").build();
 		Response response = client.newCall(request).execute();
 		String result = response.body().string();
 		System.out.println(result);
