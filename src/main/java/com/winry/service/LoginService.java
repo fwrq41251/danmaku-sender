@@ -6,9 +6,10 @@ import org.springframework.stereotype.Service;
 
 import com.winry.dto.LoginResult;
 import com.winry.form.LoginForm;
+import com.winry.util.HttpHelper;
 
 @Service
-public class LoginService extends HttpService {
+public class LoginService {
 
 	@Value("${userid}")
 	private String username;
@@ -37,6 +38,7 @@ public class LoginService extends HttpService {
 		LoginForm form = new LoginForm();
 		form.userId = username;
 		form.pwd = passwordService.encrypt(password);
-		return super.execute(LoginResult.class, "https://passport.bilibili.com/ajax/miniLogin/login", form);
+		return HttpHelper.url("https://passport.bilibili.com/ajax/miniLogin/login").form(form)
+				.execute(LoginResult.class);
 	}
 }

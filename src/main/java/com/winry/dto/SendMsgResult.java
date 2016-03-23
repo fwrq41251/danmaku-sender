@@ -2,16 +2,22 @@ package com.winry.dto;
 
 import java.util.List;
 
+import org.apache.commons.lang.StringUtils;
+
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 /**
  * Created by cong on 2016/3/23.
  */
-public class CommonResult {
+@JsonIgnoreProperties(ignoreUnknown = true)
+public class SendMsgResult implements Result {
 
     private String code;
 
     private String msg;
 
-    private List data;
+	@SuppressWarnings("rawtypes")
+	private List data;
 
     public String getCode() {
         return code;
@@ -29,11 +35,18 @@ public class CommonResult {
         this.msg = msg;
     }
 
-    public List getData() {
+	@SuppressWarnings("rawtypes")
+	public List getData() {
         return data;
     }
 
-    public void setData(List data) {
+	@SuppressWarnings("rawtypes")
+	public void setData(List data) {
         this.data = data;
     }
+
+	@Override
+	public boolean success() {
+		return StringUtils.equals(code, "0");
+	}
 }

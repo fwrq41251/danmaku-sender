@@ -143,7 +143,7 @@ public class BilibiliApiTest {
 		Request request = new Request.Builder().url(url)
 				// .addHeader("Accept", "application/json, text/javascript, */*;
 				// q=0.01")
-				.addHeader("Accept-Encoding", "gzip, deflate")
+				// .addHeader("Accept-Encoding", "gzip, deflate")
 				// .addHeader("Accept-Language",
 				// "zh-CN,zh;q=0.8,ja;q=0.6,en;q=0.4")
 				// .addHeader("Connection", "keep-alive")

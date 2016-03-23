@@ -5,7 +5,7 @@ import org.apache.commons.lang.StringUtils;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class LoginResult {
+public class LoginResult implements Result {
 
 	private String status;
 
@@ -14,10 +14,6 @@ public class LoginResult {
 	private String ts;
 
 	private LoginData data;
-
-	public boolean success() {
-		return StringUtils.equals(status, "true");
-	}
 
 	public String getStatus() {
 		return status;
@@ -87,6 +83,11 @@ public class LoginResult {
 			this.code = code;
 		}
 
+	}
+
+	@Override
+	public boolean success() {
+		return StringUtils.equals(status, "true");
 	}
 
 }
