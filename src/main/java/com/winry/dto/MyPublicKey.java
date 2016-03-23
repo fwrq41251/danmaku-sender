@@ -2,7 +2,7 @@ package com.winry.dto;
 
 import org.apache.commons.lang.StringUtils;
 
-public class PublicKey {
+public class MyPublicKey {
 
     private String hash;
 
