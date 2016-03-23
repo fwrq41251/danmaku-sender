@@ -16,6 +16,10 @@ import java.time.LocalDateTime;
 import java.time.temporal.ChronoUnit;
 import java.util.Map;
 
+/**
+ * Context that hold cookie info for api that need auth to use.
+ *
+ */
 @Component
 public class CookieContext {
 
@@ -49,6 +53,9 @@ public class CookieContext {
         }
     }
 
+    /**
+     * @return add to http request header.
+     */
     public Tuple2 getHeader() {
         if (expireDate.compareTo(LocalDateTime.now()) < 0) {
             refresh();
