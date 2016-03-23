@@ -6,7 +6,7 @@ A micro service to interactive with bilibili.com.
 
 # Build and run
 ```
-$ gradle build
+$ gradle build -x test 
 $ java -jar build/libs/danmaku-sender-0.0.1-SNAPSHOT.jar
 ```
 # Usage
