@@ -35,8 +35,7 @@ dependencies {
 			'com.squareup.okhttp3:okhttp:3.2.0',
 			'com.fasterxml.jackson.core:jackson-databind:2.6.5',
 			'com.google.guava:guava:19.0',
-			'ch.qos.logback:logback-classic:1.1.6',
-			'org.slf4j:slf4j-simple:1.7.19'
+			'ch.qos.logback:logback-classic:1.1.6'
 	testCompile('org.springframework.boot:spring-boot-starter-test')
 }
 

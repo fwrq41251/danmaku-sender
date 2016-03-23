@@ -11,14 +11,12 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import javax.annotation.PostConstruct;
 import java.time.LocalDateTime;
 import java.time.temporal.ChronoUnit;
 import java.util.Map;
 
 /**
  * Context that hold cookie info for api that need auth to use.
- *
  */
 @Component
 public class CookieContext {
@@ -34,9 +32,8 @@ public class CookieContext {
     @Autowired
     private LoginService loginService;
 
-    @PostConstruct
-    public void refresh() {
-        LoginResult result = loginService.login();
+    //    @PostConstruct
+    public void refresh(LoginResult result) {
         if (result.success()) {
             String crossDomain = result.getData().getCrossDomain();
             crossDomain = StringUtils.substringAfter(crossDomain, "?");
@@ -57,8 +54,8 @@ public class CookieContext {
      * @return add to http request header.
      */
     public Tuple2 getHeader() {
-        if (expireDate.compareTo(LocalDateTime.now()) < 0) {
-            refresh();
+        if (null == items || expireDate.compareTo(LocalDateTime.now()) < 0) {
+            throw new RuntimeException("cookie expired, please login first!");
         }
         String cookie = Joiner.on(";").withKeyValueSeparator("=").join(items);
         return new Tuple2("Cookie", cookie);

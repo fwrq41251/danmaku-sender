@@ -17,8 +17,15 @@ public class SendController {
 
     @RequestMapping(value = "send/{msg}", method = RequestMethod.GET)
     @ResponseBody
-    public String handleFileUpload(@PathVariable String msg) {
+    public String send(@PathVariable String msg) {
         SendMsgResult result = sendDanmakuService.send(msg);
+        return "success:" + result.success();
+    }
+
+    @RequestMapping(value = "send/{roomId}/{msg}", method = RequestMethod.GET)
+    @ResponseBody
+    public String send(@PathVariable String roomId, @PathVariable String msg) {
+        SendMsgResult result = sendDanmakuService.send(roomId, msg);
         return "success:" + result.success();
     }
 }
