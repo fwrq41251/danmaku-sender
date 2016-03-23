@@ -1,7 +1,5 @@
 package com.winry.dto;
 
-import org.apache.commons.lang.StringUtils;
-
 public class MyPublicKey {
 
     private String hash;
@@ -22,14 +20,6 @@ public class MyPublicKey {
 
     public void setKey(String key) {
         this.key = key;
-    }
-
-    public String getRawKey() {
-        String key = this.key;
-        key = StringUtils.remove(key, "\n");
-        key = StringUtils.removeStart(key, "-----BEGIN PUBLIC KEY-----");
-        key = StringUtils.removeEnd(key, "-----END PUBLIC KEY-----");
-        return key;
     }
 
     @Override

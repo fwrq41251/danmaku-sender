@@ -1,12 +1,13 @@
 package com.winry.form;
 
-import java.lang.reflect.Field;
-
 import okhttp3.FormBody;
 import okhttp3.RequestBody;
 
+import java.lang.reflect.Field;
+
 /**
  * Created by cong on 2016/3/22.
+ *
  */
 public abstract class Form {
 

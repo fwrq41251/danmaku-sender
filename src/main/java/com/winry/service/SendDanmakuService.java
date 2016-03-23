@@ -18,15 +18,25 @@ public class SendDanmakuService {
 	@Autowired
 	private CookieContext cookieContext;
 
+	/**
+	 * send danmaku to default live room.
+	 * @param msg
+	 * @return
+     */
 	public SendMsgResult send(String msg) {
 		return this.send(this.roomId, msg);
 	}
 
+	/**
+	 * send danmaku to specific live room.
+	 * @param msg
+	 * @return
+	 */
 	public SendMsgResult send(String roomId, String msg) {
 		SendMsgForm form = new SendMsgForm();
 		form.roomId = roomId;
 		form.msg = msg;
-		return HttpHelper.url("http://live.bilibili.com/msg/send").form(form).header(cookieContext.getHeader())
+		return HttpHelper.url("http://live.bilibili.com/msg/send").form(form).headers(cookieContext.getHeader())
 				.execute(SendMsgResult.class);
 	}
 }

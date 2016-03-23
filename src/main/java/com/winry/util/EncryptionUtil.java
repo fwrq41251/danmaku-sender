@@ -1,5 +1,8 @@
 package com.winry.util;
 
+import org.apache.commons.lang.StringUtils;
+
+import javax.crypto.Cipher;
 import java.nio.charset.Charset;
 import java.security.KeyFactory;
 import java.security.NoSuchAlgorithmException;
@@ -7,8 +10,6 @@ import java.security.PublicKey;
 import java.security.spec.InvalidKeySpecException;
 import java.security.spec.X509EncodedKeySpec;
 import java.util.Base64;
-
-import javax.crypto.Cipher;
 
 public final class EncryptionUtil {
 
@@ -21,7 +22,8 @@ public final class EncryptionUtil {
 		try {
 			final Cipher cipher = Cipher.getInstance(ALGORITHM);
 			cipher.init(Cipher.ENCRYPT_MODE, key);
-			return Base64.getEncoder().encodeToString(cipher.doFinal(text.getBytes()));
+			byte[] bytes = cipher.doFinal(text.getBytes());
+			return Base64.getEncoder().encodeToString(bytes);
 		} catch (Exception e) {
 			throw new RuntimeException(e);
 		}
@@ -29,7 +31,7 @@ public final class EncryptionUtil {
 
 	public static PublicKey getPublicKey(String raw) {
 		try {
-			byte[] bytes = Base64.getDecoder().decode(raw.getBytes(Charset.defaultCharset()));
+			byte[] bytes = decodeRaw(raw);
 			X509EncodedKeySpec spec = new X509EncodedKeySpec(bytes);
 			KeyFactory keyFactory = KeyFactory.getInstance(ALGORITHM);
 			return keyFactory.generatePublic(spec);
@@ -37,4 +39,12 @@ public final class EncryptionUtil {
 			throw new RuntimeException(e);
 		}
 	}
+
+	private static byte[] decodeRaw(String raw) {
+		raw = StringUtils.remove(raw, "\n");
+		raw = StringUtils.removeStart(raw, "-----BEGIN PUBLIC KEY-----");
+		raw = StringUtils.removeEnd(raw, "-----END PUBLIC KEY-----");
+		return Base64.getDecoder().decode(raw.getBytes(Charset.defaultCharset()));
+	}
+
 }

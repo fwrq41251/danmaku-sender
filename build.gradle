@@ -6,14 +6,14 @@ buildscript {
 		mavenCentral()
 	}
 	dependencies {
-		classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}") 
+		classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
 	}
 }
 
 apply plugin: 'java'
 apply plugin: 'eclipse'
 apply plugin: 'idea'
-apply plugin: 'spring-boot' 
+apply plugin: 'spring-boot'
 
 jar {
 	baseName = 'danmaku-sender'
@@ -34,8 +34,10 @@ dependencies {
 			'commons-lang:commons-lang:2.6',
 			'com.squareup.okhttp3:okhttp:3.2.0',
 			'com.fasterxml.jackson.core:jackson-databind:2.6.5',
-			'com.google.guava:guava:19.0'
-	testCompile('org.springframework.boot:spring-boot-starter-test') 
+			'com.google.guava:guava:19.0',
+			'ch.qos.logback:logback-classic:1.1.6',
+			'org.slf4j:slf4j-simple:1.7.19'
+	testCompile('org.springframework.boot:spring-boot-starter-test')
 }
 
 

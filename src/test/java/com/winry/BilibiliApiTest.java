@@ -1,5 +1,18 @@
 package com.winry;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.google.common.io.Files;
+import com.winry.dto.MyPublicKey;
+import com.winry.form.LoginForm;
+import com.winry.form.SendMsgForm;
+import com.winry.service.PublicKeyService;
+import com.winry.util.EncryptionUtil;
+import com.winry.util.JsonUtil;
+import com.winry.util.Tuple2;
+import okhttp3.*;
+import org.apache.commons.lang.StringUtils;
+import org.junit.Test;
+
 import java.io.File;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
@@ -11,25 +24,6 @@ import java.security.spec.InvalidKeySpecException;
 import java.security.spec.X509EncodedKeySpec;
 import java.util.Base64;
 import java.util.Date;
-
-import org.apache.commons.lang.StringUtils;
-import org.junit.Test;
-
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.google.common.io.Files;
-import com.winry.dto.MyPublicKey;
-import com.winry.form.LoginForm;
-import com.winry.form.SendMsgForm;
-import com.winry.service.PublicKeyService;
-import com.winry.util.EncryptionUtil;
-import com.winry.util.JsonUtil;
-import com.winry.util.Tuple_2;
-
-import okhttp3.HttpUrl;
-import okhttp3.OkHttpClient;
-import okhttp3.Request;
-import okhttp3.RequestBody;
-import okhttp3.Response;
 
 public class BilibiliApiTest {
 
@@ -97,7 +91,7 @@ public class BilibiliApiTest {
 		PublicKeyService apiService = new PublicKeyService();
 		MyPublicKey publicKey = apiService.getPublicKey();
 		String userId = "fwrq41251";
-		java.security.PublicKey key = EncryptionUtil.getPublicKey(publicKey.getRawKey());
+		java.security.PublicKey key = EncryptionUtil.getPublicKey(publicKey.getKey());
 		String pwd = EncryptionUtil.encrypt(publicKey.getHash() + "580685", key);
 		LoginForm form = new LoginForm();
 		form.userId = userId;
@@ -183,7 +177,7 @@ public class BilibiliApiTest {
 
 	@Test
 	public void tupleTest() {
-		Tuple_2 tuple2 = new Tuple_2("my", 2);
+		Tuple2 tuple2 = new Tuple2("my", 2);
 		String value = tuple2._1();
 		int value2 = tuple2._2();
 	}
