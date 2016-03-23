@@ -26,7 +26,7 @@ public class SendDanmakuService {
 		SendMsgForm form = new SendMsgForm();
 		form.roomId = roomId;
 		form.msg = msg;
-		return HttpHelper.url("http://live.bilibili.com/msg/send").header(cookieContext.getHeader())
+		return HttpHelper.url("http://live.bilibili.com/msg/send").form(form).header(cookieContext.getHeader())
 				.execute(SendMsgResult.class);
 	}
 }
