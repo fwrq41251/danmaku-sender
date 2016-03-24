@@ -19,7 +19,7 @@ $ curl GET http://localhost:8080/send/{msg}
 # License
 MIT License
 
-Copyright (c) [2016] [winry]
+Copyright (c) 2016 winry
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
