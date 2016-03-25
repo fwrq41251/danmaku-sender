@@ -1,4 +1,4 @@
-# danmauku-sender
+# danmaku-sender
 A micro service to interactive with bilibili.com.
 # Featrues
 * login
